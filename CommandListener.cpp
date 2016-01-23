@@ -303,6 +303,7 @@ int CommandListener::InterfaceCmd::runCommand(SocketClient *cli,
         cli->sendMsg(ResponseCode::CommandOkay, "Interface list completed", false);
         return 0;
     } else if (!strcmp(argv[1], "driver")) {
+#if 0
         int rc;
         char *rbuf;
 
@@ -317,6 +318,8 @@ int CommandListener::InterfaceCmd::runCommand(SocketClient *cli,
         } else {
             cli->sendMsg(ResponseCode::CommandOkay, rbuf, false);
         }
+#endif
+        cli->sendMsg(ResponseCode::CommandOkay, "ignoring driver command", false);
         return 0;
     } else {
         /*
@@ -342,6 +345,7 @@ int CommandListener::InterfaceCmd::runCommand(SocketClient *cli,
                     return 0;
                 }
                 if (!strcmp(argv[3], "add")) {
+#if 0
                     if (!sSecondaryTableCtrl->addFwmarkRule(argv[4])) {
                         cli->sendMsg(ResponseCode::CommandOkay,
                                 "Fwmark rule successfully added", false);
@@ -349,7 +353,10 @@ int CommandListener::InterfaceCmd::runCommand(SocketClient *cli,
                         cli->sendMsg(ResponseCode::OperationFailed, "Failed to add fwmark rule",
                                 true);
                     }
+#endif
+                    cli->sendMsg(ResponseCode::CommandOkay, "fwmark rule add ignored", false);
                 } else if (!strcmp(argv[3], "remove")) {
+#if 0
                     if (!sSecondaryTableCtrl->removeFwmarkRule(argv[4])) {
                         cli->sendMsg(ResponseCode::CommandOkay,
                                 "Fwmark rule successfully removed", false);
@@ -357,6 +364,8 @@ int CommandListener::InterfaceCmd::runCommand(SocketClient *cli,
                         cli->sendMsg(ResponseCode::OperationFailed,
                                 "Failed to remove fwmark rule", true);
                     }
+#endif
+                    cli->sendMsg(ResponseCode::CommandOkay, "fwmark rule remove ignored", false);
                 } else {
                     cli->sendMsg(ResponseCode::CommandSyntaxError, "Unknown fwmark rule cmd",
                             false);
@@ -368,6 +377,7 @@ int CommandListener::InterfaceCmd::runCommand(SocketClient *cli,
                     return 0;
                 }
                 if (!strcmp(argv[3], "add")) {
+#if 0
                     if (!sSecondaryTableCtrl->addFwmarkRoute(argv[4], argv[5], atoi(argv[6]))) {
                         cli->sendMsg(ResponseCode::CommandOkay,
                                 "Fwmark route successfully added", false);
@@ -375,7 +385,10 @@ int CommandListener::InterfaceCmd::runCommand(SocketClient *cli,
                         cli->sendMsg(ResponseCode::OperationFailed,
                                 "Failed to add fwmark route", true);
                     }
+#endif
+                    cli->sendMsg(ResponseCode::CommandOkay, "fwmark route add ignored", false);
                 } else if (!strcmp(argv[3], "remove")) {
+#if 0
                     if (!sSecondaryTableCtrl->removeFwmarkRoute(argv[4], argv[5],
                                 atoi(argv[6]))) {
                         cli->sendMsg(ResponseCode::CommandOkay,
@@ -384,6 +397,8 @@ int CommandListener::InterfaceCmd::runCommand(SocketClient *cli,
                         cli->sendMsg(ResponseCode::OperationFailed,
                                 "Failed to remove fwmark route", true);
                     }
+#endif
+                    cli->sendMsg(ResponseCode::CommandOkay, "fwmark route remove ignored", false);
                 } else {
                     cli->sendMsg(ResponseCode::CommandSyntaxError, "Unknown fwmark route cmd",
                             false);
@@ -396,13 +411,17 @@ int CommandListener::InterfaceCmd::runCommand(SocketClient *cli,
                     return 0;
                 }
                 if (!strcmp(argv[3], "add")) {
+#if 0
                     if (!sSecondaryTableCtrl->addUidRule(argv[4], atoi(argv[5]), atoi(argv[6]))) {
                         cli->sendMsg(ResponseCode::CommandOkay, "uid rule successfully added",
                                 false);
                     } else {
                         cli->sendMsg(ResponseCode::OperationFailed, "Failed to add uid rule", true);
                     }
+#endif
+                    cli->sendMsg(ResponseCode::CommandOkay, "fwmark uid add ignored", false);
                 } else if (!strcmp(argv[3], "remove")) {
+#if 0
                     if (!sSecondaryTableCtrl->removeUidRule(argv[4],
                                 atoi(argv[5]), atoi(argv[6]))) {
                         cli->sendMsg(ResponseCode::CommandOkay, "uid rule successfully removed",
@@ -411,6 +430,8 @@ int CommandListener::InterfaceCmd::runCommand(SocketClient *cli,
                         cli->sendMsg(ResponseCode::OperationFailed, "Failed to remove uid rule",
                                 true);
                     }
+#endif
+                    cli->sendMsg(ResponseCode::CommandOkay, "fwmark uid remove ignored", false);
                 } else {
                     cli->sendMsg(ResponseCode::CommandSyntaxError, "Unknown uid cmd", false);
                 }
@@ -421,6 +442,7 @@ int CommandListener::InterfaceCmd::runCommand(SocketClient *cli,
                     return 0;
                 }
                 if (!strcmp(argv[3], "add")) {
+#if 0
                     if (!sSecondaryTableCtrl->addHostExemption(argv[4])) {
                         cli->sendMsg(ResponseCode::CommandOkay, "exemption rule successfully added",
                                 false);
@@ -428,7 +450,10 @@ int CommandListener::InterfaceCmd::runCommand(SocketClient *cli,
                         cli->sendMsg(ResponseCode::OperationFailed, "Failed to add exemption rule",
                                 true);
                     }
+#endif
+                    cli->sendMsg(ResponseCode::CommandOkay, "fwmark exempt add ignored", false);
                 } else if (!strcmp(argv[3], "remove")) {
+#if 0
                     if (!sSecondaryTableCtrl->removeHostExemption(argv[4])) {
                         cli->sendMsg(ResponseCode::CommandOkay,
                                 "exemption rule successfully removed", false);
@@ -436,6 +461,8 @@ int CommandListener::InterfaceCmd::runCommand(SocketClient *cli,
                         cli->sendMsg(ResponseCode::OperationFailed,
                                 "Failed to remove exemption rule", true);
                     }
+#endif
+                    cli->sendMsg(ResponseCode::CommandOkay, "fwmark exempt remove ignored", false);
                 } else {
                     cli->sendMsg(ResponseCode::CommandSyntaxError, "Unknown exemption cmd", false);
                 }
@@ -465,6 +492,7 @@ int CommandListener::InterfaceCmd::runCommand(SocketClient *cli,
             }
         }
         if (!strcmp(argv[1], "route")) {
+#if 0
             int prefix_length = 0;
             if (argc < 8) {
                 cli->sendMsg(ResponseCode::CommandSyntaxError, "Missing argument", false);
@@ -512,6 +540,8 @@ int CommandListener::InterfaceCmd::runCommand(SocketClient *cli,
                 cli->sendMsg(ResponseCode::CommandSyntaxError, "Unknown interface cmd", false);
             }
             return 0;
+#endif
+            cli->sendMsg(ResponseCode::CommandOkay, "not adding/removing route", false);
         }
 
         if (!strcmp(argv[1], "getcfg")) {
@@ -566,6 +596,7 @@ int CommandListener::InterfaceCmd::runCommand(SocketClient *cli,
                 cli->sendMsg(ResponseCode::CommandSyntaxError, "Missing argument", false);
                 return 0;
             }
+#if 0
             ALOGD("Setting iface cfg");
 
             struct in_addr addr;
@@ -630,14 +661,19 @@ int CommandListener::InterfaceCmd::runCommand(SocketClient *cli,
 
             cli->sendMsg(ResponseCode::CommandOkay, "Interface configuration set", false);
             ifc_close();
+#endif
+            cli->sendMsg(ResponseCode::CommandOkay, "Interface configuration not set", false);
             return 0;
         } else if (!strcmp(argv[1], "clearaddrs")) {
+#if 0
             // arglist: iface
             ALOGD("Clearing all IP addresses on %s", argv[2]);
 
             ifc_clear_addresses(argv[2]);
 
             cli->sendMsg(ResponseCode::CommandOkay, "Interface IP addresses cleared", false);
+#endif
+            cli->sendMsg(ResponseCode::CommandOkay, "Interface IP addresses not cleared", false);
             return 0;
         } else if (!strcmp(argv[1], "ipv6privacyextensions")) {
             if (argc != 4) {
@@ -646,6 +682,7 @@ int CommandListener::InterfaceCmd::runCommand(SocketClient *cli,
                         false);
                 return 0;
             }
+#if 0
             int enable = !strncmp(argv[3], "enable", 7);
             if (sInterfaceCtrl->setIPv6PrivacyExtensions(argv[2], enable) == 0) {
                 cli->sendMsg(ResponseCode::CommandOkay, "IPv6 privacy extensions changed", false);
@@ -653,6 +690,8 @@ int CommandListener::InterfaceCmd::runCommand(SocketClient *cli,
                 cli->sendMsg(ResponseCode::OperationFailed,
                         "Failed to set ipv6 privacy extensions", true);
             }
+#endif
+            cli->sendMsg(ResponseCode::CommandOkay, "not setting ipv6 privacy extensions", false);
             return 0;
         } else if (!strcmp(argv[1], "ipv6")) {
             if (argc != 4) {
@@ -661,7 +700,7 @@ int CommandListener::InterfaceCmd::runCommand(SocketClient *cli,
                         false);
                 return 0;
             }
-
+#if 0
             int enable = !strncmp(argv[3], "enable", 7);
             if (sInterfaceCtrl->setEnableIPv6(argv[2], enable) == 0) {
                 cli->sendMsg(ResponseCode::CommandOkay, "IPv6 state changed", false);
@@ -669,6 +708,8 @@ int CommandListener::InterfaceCmd::runCommand(SocketClient *cli,
                 cli->sendMsg(ResponseCode::OperationFailed,
                         "Failed to change IPv6 state", true);
             }
+#endif
+            cli->sendMsg(ResponseCode::CommandOkay, "IPv6 state not changed", false);
             return 0;
         } else if (!strcmp(argv[1], "getmtu")) {
             char *msg = NULL;
@@ -688,12 +729,16 @@ int CommandListener::InterfaceCmd::runCommand(SocketClient *cli,
                         "Usage: interface setmtu <interface> <val>", false);
                 return 0;
             }
+#if 0
             if (sInterfaceCtrl->setMtu(argv[2], argv[3]) == 0) {
                 cli->sendMsg(ResponseCode::CommandOkay, "MTU changed", false);
             } else {
                 cli->sendMsg(ResponseCode::OperationFailed,
                         "Failed to get MTU", true);
             }
+            return 0;
+#endif
+            cli->sendMsg(ResponseCode::CommandOkay, "MTU not changed", false);
             return 0;
         } else {
             cli->sendMsg(ResponseCode::CommandSyntaxError, "Unknown interface cmd", false);
@@ -742,9 +787,15 @@ int CommandListener::IpFwdCmd::runCommand(SocketClient *cli,
         free(tmp);
         return 0;
     } else if (!strcmp(argv[1], "enable")) {
+        rc = 0;
+#if 0
         rc = sTetherCtrl->setIpFwdEnabled(true);
+#endif
     } else if (!strcmp(argv[1], "disable")) {
+        rc = 0;
+#if 0
         rc = sTetherCtrl->setIpFwdEnabled(false);
+#endif
     } else {
         cli->sendMsg(ResponseCode::CommandSyntaxError, "Unknown ipfwd cmd", false);
         return 0;
@@ -775,7 +826,10 @@ int CommandListener::TetherCmd::runCommand(SocketClient *cli,
     }
 
     if (!strcmp(argv[1], "stop")) {
+        rc = 0;
+#if 0
         rc = sTetherCtrl->stopTethering();
+#endif
     } else if (!strcmp(argv[1], "status")) {
         char *tmp = NULL;
 
@@ -809,6 +863,8 @@ int CommandListener::TetherCmd::runCommand(SocketClient *cli,
         }
 
         if (!strcmp(argv[1], "start")) {
+            rc = 0;
+#if 0
             int lease_time = 0;
             if (argc % 2 == 1) {
                 if (!(lease_time = atoi(argv[argc-1]))) {
@@ -835,12 +891,20 @@ int CommandListener::TetherCmd::runCommand(SocketClient *cli,
             else
                 rc = sTetherCtrl->startTethering(num_addrs, addrs);
             free(addrs);
+#endif
         } else if (!strcmp(argv[1], "interface")) {
             if (!strcmp(argv[2], "add")) {
+                rc = 0;
+#if 0
                 rc = sTetherCtrl->tetherInterface(argv[3]);
+#endif
             } else if (!strcmp(argv[2], "remove")) {
+                rc = 0;
+#if 0
                 rc = sTetherCtrl->untetherInterface(argv[3]);
-            } else if (!strcmp(argv[2], "list")) {
+#endif
+            } else
+            if (!strcmp(argv[2], "list")) {
                 InterfaceCollection *ilist = sTetherCtrl->getTetheredInterfaceList();
                 InterfaceCollection::iterator it;
 
@@ -848,10 +912,16 @@ int CommandListener::TetherCmd::runCommand(SocketClient *cli,
                     cli->sendMsg(ResponseCode::TetherInterfaceListResult, *it, false);
                 }
             } else if (!strcmp(argv[2], "add_upstream")) {
+                rc = 0;
+#if 0
                 ALOGD("command %s %s %s %s", argv[0], argv[1], argv[2], argv[3]);
                 rc = sTetherCtrl->addUpstreamInterface(argv[3]);
+#endif
             } else if (!strcmp(argv[2], "remove_upstream")) {
+                rc = 0;
+#if 0
                 rc = sTetherCtrl->removeUpstreamInterface(argv[3]);
+#endif
             } else {
                 cli->sendMsg(ResponseCode::CommandParameterError,
                              "Unknown tether interface operation", false);
@@ -859,7 +929,10 @@ int CommandListener::TetherCmd::runCommand(SocketClient *cli,
             }
         } else if (!strcmp(argv[1], "dns")) {
             if (!strcmp(argv[2], "set")) {
+                rc = 0;
+#if 0
                 rc = sTetherCtrl->setDnsForwarders(&argv[3], argc - 3);
+#endif
             /* else if (!strcmp(argv[2], "list")) handled above */
             } else {
                 cli->sendMsg(ResponseCode::CommandParameterError,
@@ -897,7 +970,10 @@ int CommandListener::V6RtrAdvCmd::runCommand(SocketClient *cli,
     }
 
     if (!strcmp(argv[1], "stop")) {
+        rc = 0;
+#if 0
         rc = sTetherCtrl->stopV6RtrAdv();
+#endif
     } else if (!strcmp(argv[1], "status")) {
         char *tmp = NULL;
 
@@ -919,12 +995,19 @@ int CommandListener::V6RtrAdvCmd::runCommand(SocketClient *cli,
 
             int num_ifaces = argc - 2;
             int arg_index = 2;
+            rc = 0;
+#if 0
             rc = sTetherCtrl->startV6RtrAdv(num_ifaces, &argv[arg_index]);
+#endif
         } else if (!strcmp(argv[1], "interface")) {
             if (!strcmp(argv[2], "add")) {
+#if 0
                 rc = sTetherCtrl->tetherInterface(argv[3]);
+#endif
             } else if (!strcmp(argv[2], "remove")) {
+#if 0
                 rc = sTetherCtrl->untetherInterface(argv[3]);
+#endif
             } else if (!strcmp(argv[2], "list")) {
                 InterfaceCollection *ilist = sTetherCtrl->getTetheredInterfaceList();
                 InterfaceCollection::iterator it;
@@ -967,15 +1050,21 @@ int CommandListener::NatCmd::runCommand(SocketClient *cli,
     }
 
     if (!strcmp(argv[1], "enable")) {
+        rc = 0;
+#if 0
         rc = sNatCtrl->enableNat(argc, argv);
         if(!rc) {
             /* Ignore ifaces for now. */
             rc = sBandwidthCtrl->setGlobalAlertInForwardChain();
         }
+#endif
     } else if (!strcmp(argv[1], "disable")) {
+        rc = 0;
+#if 0
         /* Ignore ifaces for now. */
         rc = sBandwidthCtrl->removeGlobalAlertInForwardChain();
         rc |= sNatCtrl->disableNat(argc, argv);
+#endif
     } else {
         cli->sendMsg(ResponseCode::CommandSyntaxError, "Unknown nat cmd", false);
         return 0;
@@ -1004,6 +1093,8 @@ int CommandListener::PppdCmd::runCommand(SocketClient *cli,
     }
 
     if (!strcmp(argv[1], "attach")) {
+        rc = 0;
+#if 0
         struct in_addr l, r, dns1, dns2;
 
         memset(&dns1, 0, sizeof(struct in_addr));
@@ -1026,8 +1117,12 @@ int CommandListener::PppdCmd::runCommand(SocketClient *cli,
             return 0;
         }
         rc = sPppCtrl->attachPppd(argv[2], l, r, dns1, dns2);
+#endif
     } else if (!strcmp(argv[1], "detach")) {
+        rc = 0;
+#if 0
         rc = sPppCtrl->detachPppd(argv[2]);
+#endif
     } else {
         cli->sendMsg(ResponseCode::CommandSyntaxError, "Unknown pppd cmd", false);
         return 0;
@@ -1063,9 +1158,15 @@ int CommandListener::SoftapCmd::runCommand(SocketClient *cli,
     }
 
     if (!strcmp(argv[1], "startap")) {
+        rc = 0;
+#if 0
         rc = sSoftapCtrl->startSoftap();
+#endif
     } else if (!strcmp(argv[1], "stopap")) {
+        rc = 0;
+#if 0
         rc = sSoftapCtrl->stopSoftap();
+#endif
     } else if (!strcmp(argv[1], "fwreload")) {
         rc = sSoftapCtrl->fwReloadSoftap(argc, argv);
     } else if (!strcmp(argv[1], "status")) {
@@ -1075,7 +1176,10 @@ int CommandListener::SoftapCmd::runCommand(SocketClient *cli,
         free(retbuf);
         return 0;
     } else if (!strcmp(argv[1], "set")) {
+        rc = 0;
+#if 0
         rc = sSoftapCtrl->setSoftap(argc, argv);
+#endif
     } else {
         cli->sendMsg(ResponseCode::CommandSyntaxError, "Unrecognized SoftAP command", false);
         return 0;
@@ -1105,7 +1209,10 @@ int CommandListener::ResolverCmd::runCommand(SocketClient *cli, int argc, char *
 
     if (!strcmp(argv[1], "setdefaultif")) { // "resolver setdefaultif <iface>"
         if (argc == 3) {
+            rc = 0;
+#if 0
             rc = sResolverCtrl->setDefaultInterface(argv[2]);
+#endif
         } else {
             cli->sendMsg(ResponseCode::CommandSyntaxError,
                     "Wrong number of arguments to resolver setdefaultif", false);
@@ -1114,13 +1221,17 @@ int CommandListener::ResolverCmd::runCommand(SocketClient *cli, int argc, char *
     } else if (!strcmp(argv[1], "setifdns")) {
         // "resolver setifdns <iface> <domains> <dns1> <dns2> ..."
         if (argc >= 5) {
+            rc = 0;
+#if 0
             rc = sResolverCtrl->setInterfaceDnsServers(argv[2], argv[3], &argv[4], argc - 4);
+#endif
         } else {
             cli->sendMsg(ResponseCode::CommandSyntaxError,
                     "Wrong number of arguments to resolver setifdns", false);
             return 0;
         }
 
+#if 0
         // set the address of the interface to which the name servers
         // are bound. Required in order to bind to right interface when
         // doing the dns query.
@@ -1130,9 +1241,13 @@ int CommandListener::ResolverCmd::runCommand(SocketClient *cli, int argc, char *
 
             rc = sResolverCtrl->setInterfaceAddress(argv[2], &addr);
         }
+#endif
     } else if (!strcmp(argv[1], "flushdefaultif")) { // "resolver flushdefaultif"
         if (argc == 2) {
+            rc = 0;
+#if 0
             rc = sResolverCtrl->flushDefaultDnsCache();
+#endif
         } else {
             cli->sendMsg(ResponseCode::CommandSyntaxError,
                     "Wrong number of arguments to resolver flushdefaultif", false);
@@ -1140,7 +1255,10 @@ int CommandListener::ResolverCmd::runCommand(SocketClient *cli, int argc, char *
         }
     } else if (!strcmp(argv[1], "flushif")) { // "resolver flushif <iface>"
         if (argc == 3) {
+            rc = 0;
+#if 0
             rc = sResolverCtrl->flushInterfaceDnsCache(argv[2]);
+#endif
         } else {
             cli->sendMsg(ResponseCode::CommandSyntaxError,
                     "Wrong number of arguments to resolver setdefaultif", false);
@@ -1148,7 +1266,10 @@ int CommandListener::ResolverCmd::runCommand(SocketClient *cli, int argc, char *
         }
     } else if (!strcmp(argv[1], "setifaceforpid")) { // resolver setifaceforpid <iface> <pid>
         if (argc == 4) {
+            rc = 0;
+#if 0
             rc = sResolverCtrl->setDnsInterfaceForPid(argv[2], atoi(argv[3]));
+#endif
         } else {
             cli->sendMsg(ResponseCode::CommandSyntaxError,
                     "Wrong number of arguments to resolver setifaceforpid", false);
@@ -1156,7 +1277,10 @@ int CommandListener::ResolverCmd::runCommand(SocketClient *cli, int argc, char *
         }
     } else if (!strcmp(argv[1], "clearifaceforpid")) { // resolver clearifaceforpid <pid>
         if (argc == 3) {
+            rc = 0;
+#if 0
             rc = sResolverCtrl->clearDnsInterfaceForPid(atoi(argv[2]));
+#endif
         } else {
             cli->sendMsg(ResponseCode::CommandSyntaxError,
                     "Wrong number of arguments to resolver clearifaceforpid", false);
@@ -1164,7 +1288,10 @@ int CommandListener::ResolverCmd::runCommand(SocketClient *cli, int argc, char *
         }
     } else if (!strcmp(argv[1], "setifaceforuidrange")) { // resolver setifaceforuid <iface> <l> <h>
         if (argc == 5) {
+            rc = 0;
+#if 0
             rc = sResolverCtrl->setDnsInterfaceForUidRange(argv[2], atoi(argv[3]), atoi(argv[4]));
+#endif
         } else {
             cli->sendMsg(ResponseCode::CommandSyntaxError,
                     "Wrong number of arguments to resolver setifaceforuid", false);
@@ -1173,8 +1300,11 @@ int CommandListener::ResolverCmd::runCommand(SocketClient *cli, int argc, char *
     } else if (!strcmp(argv[1], "clearifaceforuidrange")) {
         // resolver clearifaceforuid <if> <l> <h>
         if (argc == 5) {
+            rc = 0;
+#if 0
             rc = sResolverCtrl->clearDnsInterfaceForUidRange(argv[2], atoi(argv[3]),
                     atoi(argv[4]));
+#endif
         } else {
             cli->sendMsg(ResponseCode::CommandSyntaxError,
                     "Wrong number of arguments to resolver clearifaceforuid", false);
@@ -1182,7 +1312,10 @@ int CommandListener::ResolverCmd::runCommand(SocketClient *cli, int argc, char *
         }
     } else if (!strcmp(argv[1], "clearifacemapping")) {
         if (argc == 2) {
+            rc = 0;
+#if 0
             rc = sResolverCtrl->clearDnsInterfaceMappings();
+#endif
         } else {
             cli->sendMsg(ResponseCode::CommandSyntaxError,
                     "Wrong number of arugments to resolver clearifacemapping", false);
@@ -1214,7 +1347,7 @@ void CommandListener::BandwidthControlCmd::sendGenericSyntaxError(SocketClient *
 
 void CommandListener::BandwidthControlCmd::sendGenericOkFail(SocketClient *cli, int cond) {
     if (!cond) {
-        cli->sendMsg(ResponseCode::CommandOkay, "Bandwidth command succeeeded", false);
+        cli->sendMsg(ResponseCode::CommandOkay, "Bandwidth command succeeeded (or ignored)", false);
     } else {
         cli->sendMsg(ResponseCode::OperationFailed, "Bandwidth command failed", false);
     }
@@ -1233,14 +1366,20 @@ int CommandListener::BandwidthControlCmd::runCommand(SocketClient *cli, int argc
     ALOGV("bwctrlcmd: argc=%d %s %s ...", argc, argv[0], argv[1]);
 
     if (!strcmp(argv[1], "enable")) {
+#if 0
         int rc = sBandwidthCtrl->enableBandwidthControl(true);
         sendGenericOkFail(cli, rc);
+#endif
+        sendGenericOkFail(cli, 0);
         return 0;
 
     }
     if (!strcmp(argv[1], "disable")) {
+#if 0
         int rc = sBandwidthCtrl->disableBandwidthControl();
         sendGenericOkFail(cli, rc);
+#endif
+        sendGenericOkFail(cli, 0);
         return 0;
 
     }
@@ -1249,8 +1388,11 @@ int CommandListener::BandwidthControlCmd::runCommand(SocketClient *cli, int argc
             sendGenericSyntaxError(cli, "removequota <interface>");
             return 0;
         }
+#if 0
         int rc = sBandwidthCtrl->removeInterfaceSharedQuota(argv[2]);
         sendGenericOkFail(cli, rc);
+#endif
+        sendGenericOkFail(cli, 0);
         return 0;
 
     }
@@ -1260,6 +1402,7 @@ int CommandListener::BandwidthControlCmd::runCommand(SocketClient *cli, int argc
             sendGenericSyntaxError(cli, "getquota");
             return 0;
         }
+#if 0
         int rc = sBandwidthCtrl->getInterfaceSharedQuota(&bytes);
         if (rc) {
             sendGenericOpFailed(cli, "Failed to get quota");
@@ -1270,6 +1413,8 @@ int CommandListener::BandwidthControlCmd::runCommand(SocketClient *cli, int argc
         asprintf(&msg, "%lld", bytes);
         cli->sendMsg(ResponseCode::QuotaCounterResult, msg, false);
         free(msg);
+#endif
+        sendGenericOkFail(cli, 0);
         return 0;
 
     }
@@ -1297,8 +1442,11 @@ int CommandListener::BandwidthControlCmd::runCommand(SocketClient *cli, int argc
             sendGenericSyntaxError(cli, "setquota <interface> <bytes>");
             return 0;
         }
+#if 0
         int rc = sBandwidthCtrl->setInterfaceSharedQuota(argv[2], atoll(argv[3]));
         sendGenericOkFail(cli, rc);
+#endif
+        sendGenericOkFail(cli, 0);
         return 0;
     }
     if (!strcmp(argv[1], "setquotas") || !strcmp(argv[1], "sqs")) {
@@ -1307,7 +1455,7 @@ int CommandListener::BandwidthControlCmd::runCommand(SocketClient *cli, int argc
             sendGenericSyntaxError(cli, "setquotas <bytes> <interface> ...");
             return 0;
         }
-
+#if 0
         for (int q = 3; argc >= 4; q++, argc--) {
             rc = sBandwidthCtrl->setInterfaceSharedQuota(argv[q], atoll(argv[2]));
             if (rc) {
@@ -1320,6 +1468,8 @@ int CommandListener::BandwidthControlCmd::runCommand(SocketClient *cli, int argc
             }
         }
         sendGenericOkFail(cli, rc);
+#endif
+        sendGenericOkFail(cli, 0);
         return 0;
 
     }
@@ -1329,7 +1479,7 @@ int CommandListener::BandwidthControlCmd::runCommand(SocketClient *cli, int argc
             sendGenericSyntaxError(cli, "removequotas <interface> ...");
             return 0;
         }
-
+#if 0
         for (int q = 2; argc >= 3; q++, argc--) {
             rc = sBandwidthCtrl->removeInterfaceSharedQuota(argv[q]);
             if (rc) {
@@ -1342,6 +1492,8 @@ int CommandListener::BandwidthControlCmd::runCommand(SocketClient *cli, int argc
             }
         }
         sendGenericOkFail(cli, rc);
+#endif
+        sendGenericOkFail(cli, 0);
         return 0;
 
     }
@@ -1350,8 +1502,11 @@ int CommandListener::BandwidthControlCmd::runCommand(SocketClient *cli, int argc
             sendGenericSyntaxError(cli, "removeiquota <interface>");
             return 0;
         }
+#if 0
         int rc = sBandwidthCtrl->removeInterfaceQuota(argv[2]);
         sendGenericOkFail(cli, rc);
+#endif
+        sendGenericOkFail(cli, 0);
         return 0;
 
     }
@@ -1360,8 +1515,11 @@ int CommandListener::BandwidthControlCmd::runCommand(SocketClient *cli, int argc
             sendGenericSyntaxError(cli, "setiquota <interface> <bytes>");
             return 0;
         }
+#if 0
         int rc = sBandwidthCtrl->setInterfaceQuota(argv[2], atoll(argv[3]));
         sendGenericOkFail(cli, rc);
+#endif
+        sendGenericOkFail(cli, 0);
         return 0;
 
     }
@@ -1370,8 +1528,11 @@ int CommandListener::BandwidthControlCmd::runCommand(SocketClient *cli, int argc
             sendGenericSyntaxError(cli, "addnaughtyapps <appUid> ...");
             return 0;
         }
+#if 0
         int rc = sBandwidthCtrl->addNaughtyApps(argc - 2, argv + 2);
         sendGenericOkFail(cli, rc);
+#endif
+        sendGenericOkFail(cli, 0);
         return 0;
 
 
@@ -1381,8 +1542,11 @@ int CommandListener::BandwidthControlCmd::runCommand(SocketClient *cli, int argc
             sendGenericSyntaxError(cli, "removenaughtyapps <appUid> ...");
             return 0;
         }
+#if 0
         int rc = sBandwidthCtrl->removeNaughtyApps(argc - 2, argv + 2);
         sendGenericOkFail(cli, rc);
+#endif
+        sendGenericOkFail(cli, 0);
         return 0;
     }
     if (!strcmp(argv[1], "happybox")) {
@@ -1391,14 +1555,19 @@ int CommandListener::BandwidthControlCmd::runCommand(SocketClient *cli, int argc
             return 0;
         }
         if (!strcmp(argv[2], "enable")) {
+#if 0
             int rc = sBandwidthCtrl->enableHappyBox();
             sendGenericOkFail(cli, rc);
+#endif
+            sendGenericOkFail(cli, 0);
             return 0;
 
         }
         if (!strcmp(argv[2], "disable")) {
+#if 0
             int rc = sBandwidthCtrl->disableHappyBox();
             sendGenericOkFail(cli, rc);
+#endif
             return 0;
         }
         sendGenericSyntaxError(cli, "happybox (enable | disable)");
@@ -1409,8 +1578,11 @@ int CommandListener::BandwidthControlCmd::runCommand(SocketClient *cli, int argc
             sendGenericSyntaxError(cli, "addniceapps <appUid> ...");
             return 0;
         }
+#if 0
         int rc = sBandwidthCtrl->addNiceApps(argc - 2, argv + 2);
         sendGenericOkFail(cli, rc);
+#endif
+        sendGenericOkFail(cli, 0);
         return 0;
     }
     if (!strcmp(argv[1], "removeniceapps") || !strcmp(argv[1], "rha")) {
@@ -1418,8 +1590,11 @@ int CommandListener::BandwidthControlCmd::runCommand(SocketClient *cli, int argc
             sendGenericSyntaxError(cli, "removeniceapps <appUid> ...");
             return 0;
         }
+#if 0
         int rc = sBandwidthCtrl->removeNiceApps(argc - 2, argv + 2);
         sendGenericOkFail(cli, rc);
+#endif
+        sendGenericOkFail(cli, 0);
         return 0;
     }
     if (!strcmp(argv[1], "setglobalalert") || !strcmp(argv[1], "sga")) {
@@ -1427,8 +1602,11 @@ int CommandListener::BandwidthControlCmd::runCommand(SocketClient *cli, int argc
             sendGenericSyntaxError(cli, "setglobalalert <bytes>");
             return 0;
         }
+#if 0
         int rc = sBandwidthCtrl->setGlobalAlert(atoll(argv[2]));
         sendGenericOkFail(cli, rc);
+#endif
+        sendGenericOkFail(cli, 0);
         return 0;
     }
     if (!strcmp(argv[1], "debugsettetherglobalalert") || !strcmp(argv[1], "dstga")) {
@@ -1436,9 +1614,12 @@ int CommandListener::BandwidthControlCmd::runCommand(SocketClient *cli, int argc
             sendGenericSyntaxError(cli, "debugsettetherglobalalert <interface0> <interface1>");
             return 0;
         }
+#if 0
         /* We ignore the interfaces for now. */
         int rc = sBandwidthCtrl->setGlobalAlertInForwardChain();
         sendGenericOkFail(cli, rc);
+#endif
+        sendGenericOkFail(cli, 0);
         return 0;
 
     }
@@ -1447,8 +1628,11 @@ int CommandListener::BandwidthControlCmd::runCommand(SocketClient *cli, int argc
             sendGenericSyntaxError(cli, "removeglobalalert");
             return 0;
         }
+#if 0
         int rc = sBandwidthCtrl->removeGlobalAlert();
         sendGenericOkFail(cli, rc);
+#endif
+        sendGenericOkFail(cli, 0);
         return 0;
 
     }
@@ -1457,9 +1641,12 @@ int CommandListener::BandwidthControlCmd::runCommand(SocketClient *cli, int argc
             sendGenericSyntaxError(cli, "debugremovetetherglobalalert <interface0> <interface1>");
             return 0;
         }
+#if 0
         /* We ignore the interfaces for now. */
         int rc = sBandwidthCtrl->removeGlobalAlertInForwardChain();
         sendGenericOkFail(cli, rc);
+#endif
+        sendGenericOkFail(cli, 0);
         return 0;
 
     }
@@ -1468,8 +1655,11 @@ int CommandListener::BandwidthControlCmd::runCommand(SocketClient *cli, int argc
             sendGenericSyntaxError(cli, "setsharedalert <bytes>");
             return 0;
         }
+#if 0
         int rc = sBandwidthCtrl->setSharedAlert(atoll(argv[2]));
         sendGenericOkFail(cli, rc);
+#endif
+        sendGenericOkFail(cli, 0);
         return 0;
 
     }
@@ -1478,8 +1668,11 @@ int CommandListener::BandwidthControlCmd::runCommand(SocketClient *cli, int argc
             sendGenericSyntaxError(cli, "removesharedalert");
             return 0;
         }
+#if 0
         int rc = sBandwidthCtrl->removeSharedAlert();
         sendGenericOkFail(cli, rc);
+#endif
+        sendGenericOkFail(cli, 0);
         return 0;
 
     }
@@ -1488,8 +1681,11 @@ int CommandListener::BandwidthControlCmd::runCommand(SocketClient *cli, int argc
             sendGenericSyntaxError(cli, "setinterfacealert <interface> <bytes>");
             return 0;
         }
+#if 0
         int rc = sBandwidthCtrl->setInterfaceAlert(argv[2], atoll(argv[3]));
         sendGenericOkFail(cli, rc);
+#endif
+        sendGenericOkFail(cli, 0);
         return 0;
 
     }
@@ -1498,8 +1694,11 @@ int CommandListener::BandwidthControlCmd::runCommand(SocketClient *cli, int argc
             sendGenericSyntaxError(cli, "removeinterfacealert <interface>");
             return 0;
         }
+#if 0
         int rc = sBandwidthCtrl->removeInterfaceAlert(argv[2]);
         sendGenericOkFail(cli, rc);
+#endif
+        sendGenericOkFail(cli, 0);
         return 0;
 
     }
@@ -1541,7 +1740,10 @@ int CommandListener::IdletimerControlCmd::runCommand(SocketClient *cli, int argc
 
     if (!strcmp(argv[1], "enable")) {
       if (0 != sIdletimerCtrl->enableIdletimerControl()) {
+#if 0
         cli->sendMsg(ResponseCode::CommandSyntaxError, "Missing argument", false);
+#endif
+        cli->sendMsg(ResponseCode::CommandOkay, "Enable ignored", false);
       } else {
         cli->sendMsg(ResponseCode::CommandOkay, "Enable success", false);
       }
@@ -1550,7 +1752,10 @@ int CommandListener::IdletimerControlCmd::runCommand(SocketClient *cli, int argc
     }
     if (!strcmp(argv[1], "disable")) {
       if (0 != sIdletimerCtrl->disableIdletimerControl()) {
+#if 0
         cli->sendMsg(ResponseCode::CommandSyntaxError, "Missing argument", false);
+#endif
+        cli->sendMsg(ResponseCode::CommandOkay, "Disable ignored", false);
       } else {
         cli->sendMsg(ResponseCode::CommandOkay, "Disable success", false);
       }
@@ -1561,12 +1766,15 @@ int CommandListener::IdletimerControlCmd::runCommand(SocketClient *cli, int argc
             cli->sendMsg(ResponseCode::CommandSyntaxError, "Missing argument", false);
             return 0;
         }
+#if 0
         if(0 != sIdletimerCtrl->addInterfaceIdletimer(
                                         argv[2], atoi(argv[3]), argv[4])) {
           cli->sendMsg(ResponseCode::OperationFailed, "Failed to add interface", false);
         } else {
           cli->sendMsg(ResponseCode::CommandOkay,  "Add success", false);
         }
+#endif
+        cli->sendMsg(ResponseCode::CommandOkay, "Add ignored", false);
         return 0;
     }
     if (!strcmp(argv[1], "remove")) {
@@ -1574,6 +1782,7 @@ int CommandListener::IdletimerControlCmd::runCommand(SocketClient *cli, int argc
             cli->sendMsg(ResponseCode::CommandSyntaxError, "Missing argument", false);
             return 0;
         }
+#if 0
         // ashish: fixme timeout
         if (0 != sIdletimerCtrl->removeInterfaceIdletimer(
                                         argv[2], atoi(argv[3]), argv[4])) {
@@ -1581,6 +1790,8 @@ int CommandListener::IdletimerControlCmd::runCommand(SocketClient *cli, int argc
         } else {
           cli->sendMsg(ResponseCode::CommandOkay, "Remove success", false);
         }
+#endif
+        cli->sendMsg(ResponseCode::CommandOkay, "Remove ignored", false);
         return 0;
     }
 
@@ -1594,7 +1805,7 @@ CommandListener::FirewallCmd::FirewallCmd() :
 
 int CommandListener::FirewallCmd::sendGenericOkFail(SocketClient *cli, int cond) {
     if (!cond) {
-        cli->sendMsg(ResponseCode::CommandOkay, "Firewall command succeeded", false);
+        cli->sendMsg(ResponseCode::CommandOkay, "Firewall command succeeded (or ignored)", false);
     } else {
         cli->sendMsg(ResponseCode::OperationFailed, "Firewall command failed", false);
     }
@@ -1617,12 +1828,18 @@ int CommandListener::FirewallCmd::runCommand(SocketClient *cli, int argc,
     }
 
     if (!strcmp(argv[1], "enable")) {
+#if 0
         int res = sFirewallCtrl->enableFirewall();
         return sendGenericOkFail(cli, res);
+#endif
+        return sendGenericOkFail(cli, 0);
     }
     if (!strcmp(argv[1], "disable")) {
+#if 0
         int res = sFirewallCtrl->disableFirewall();
         return sendGenericOkFail(cli, res);
+#endif
+        return sendGenericOkFail(cli, 0);
     }
     if (!strcmp(argv[1], "is_enabled")) {
         int res = sFirewallCtrl->isFirewallEnabled();
@@ -1636,11 +1853,14 @@ int CommandListener::FirewallCmd::runCommand(SocketClient *cli, int argc,
             return 0;
         }
 
+#if 0
         const char* iface = argv[2];
         FirewallRule rule = parseRule(argv[3]);
 
         int res = sFirewallCtrl->setInterfaceRule(iface, rule);
         return sendGenericOkFail(cli, res);
+#endif
+        return sendGenericOkFail(cli, 0);
     }
 
     if (!strcmp(argv[1], "set_egress_source_rule")) {
@@ -1650,12 +1870,14 @@ int CommandListener::FirewallCmd::runCommand(SocketClient *cli, int argc,
                          false);
             return 0;
         }
-
+#if 0
         const char* addr = argv[2];
         FirewallRule rule = parseRule(argv[3]);
 
         int res = sFirewallCtrl->setEgressSourceRule(addr, rule);
         return sendGenericOkFail(cli, res);
+#endif
+        return sendGenericOkFail(cli, 0);
     }
 
     if (!strcmp(argv[1], "set_egress_dest_rule")) {
@@ -1666,6 +1888,7 @@ int CommandListener::FirewallCmd::runCommand(SocketClient *cli, int argc,
             return 0;
         }
 
+#if 0
         const char* addr = argv[2];
         int port = atoi(argv[3]);
         FirewallRule rule = parseRule(argv[4]);
@@ -1674,6 +1897,8 @@ int CommandListener::FirewallCmd::runCommand(SocketClient *cli, int argc,
         res |= sFirewallCtrl->setEgressDestRule(addr, PROTOCOL_TCP, port, rule);
         res |= sFirewallCtrl->setEgressDestRule(addr, PROTOCOL_UDP, port, rule);
         return sendGenericOkFail(cli, res);
+#endif
+        return sendGenericOkFail(cli, 0);
     }
 
     if (!strcmp(argv[1], "set_uid_rule")) {
@@ -1684,11 +1909,14 @@ int CommandListener::FirewallCmd::runCommand(SocketClient *cli, int argc,
             return 0;
         }
 
+#if 0
         int uid = atoi(argv[2]);
         FirewallRule rule = parseRule(argv[3]);
 
         int res = sFirewallCtrl->setUidRule(uid, rule);
         return sendGenericOkFail(cli, res);
+#endif
+        return sendGenericOkFail(cli, 0);
     }
 
     cli->sendMsg(ResponseCode::CommandSyntaxError, "Unknown command", false);
@@ -1707,7 +1935,10 @@ int CommandListener::ClatdCmd::runCommand(SocketClient *cli, int argc,
     }
 
     if(!strcmp(argv[1], "stop")) {
+        rc = 0;
+#if 0
         rc = sClatdCtrl->stopClatd();
+#endif
     } else if (!strcmp(argv[1], "status")) {
         char *tmp = NULL;
 
@@ -1721,7 +1952,10 @@ int CommandListener::ClatdCmd::runCommand(SocketClient *cli, int argc,
             cli->sendMsg(ResponseCode::CommandSyntaxError, "Missing argument", false);
             return 0;
         }
+        rc = 0;
+#if 0
         rc = sClatdCtrl->startClatd(argv[2]);
+#endif
     } else {
         cli->sendMsg(ResponseCode::CommandSyntaxError, "Unknown clatd cmd", false);
         return 0;
@@ -1771,7 +2005,7 @@ int CommandListener::RouteCmd::runCommand(SocketClient *cli, int argc, char **ar
                    " <ipaddr> <routeId> [<gateway>]", false);
                 return 0;
             }
-
+#if 0
             char* end;
             long int rid =  strtol(argv[6], &end, 10);
             if (*end != '\0')
@@ -1858,6 +2092,8 @@ int CommandListener::RouteCmd::runCommand(SocketClient *cli, int argc, char **ar
                 }
             }
             free(network);
+#endif
+            cli->sendMsg(ResponseCode::CommandOkay, "route src replace ignored", false);
         } else if (!strcmp(argv[1], "del")) {
             if (argc != 5) {
                 cli->sendMsg(ResponseCode::CommandSyntaxError,
@@ -1865,6 +2101,7 @@ int CommandListener::RouteCmd::runCommand(SocketClient *cli, int argc, char **ar
                 return 0;
             }
 
+#if 0
             char* end;
             long int rid =  strtol(argv[4], &end, 10);
             if (*end != '\0')
@@ -1887,6 +2124,8 @@ int CommandListener::RouteCmd::runCommand(SocketClient *cli, int argc, char **ar
                 res += argv[4];
                 cli->sendMsg(ResponseCode::CommandOkay, res.c_str(), false);
             }
+#endif
+            cli->sendMsg(ResponseCode::CommandOkay, "route src del ignored", false);
         } else {
             cli->sendMsg(ResponseCode::CommandSyntaxError,
                         "permitted operation for src routes: <replace|del>",
@@ -1902,6 +2141,7 @@ int CommandListener::RouteCmd::runCommand(SocketClient *cli, int argc, char **ar
                 return 0;
             }
 
+#if 0
             char *iface = argv[4],
                  *gateway = NULL;
 
@@ -1928,6 +2168,8 @@ int CommandListener::RouteCmd::runCommand(SocketClient *cli, int argc, char **ar
                 cli->sendMsg(ResponseCode::CommandOkay,
                             "default route replace succeeded", false);
             }
+#endif
+            cli->sendMsg(ResponseCode::CommandOkay, "route def replace ignored", false);
         } else if (!strcmp(argv[1], "add")) {
             if ((argc !=6) && (argc != 7)) {
                 cli->sendMsg(ResponseCode::CommandSyntaxError,
@@ -1936,6 +2178,7 @@ int CommandListener::RouteCmd::runCommand(SocketClient *cli, int argc, char **ar
                 return 0;
             }
 
+#if 0
             char *iface = argv[4],
                  *gateway = NULL;
             int metric = atoi(argv[5]);
@@ -1963,6 +2206,8 @@ int CommandListener::RouteCmd::runCommand(SocketClient *cli, int argc, char **ar
                 cli->sendMsg(ResponseCode::CommandOkay,
                             "default route add with metric succeeded", false);
             }
+#endif
+            cli->sendMsg(ResponseCode::CommandOkay, "route src add ignored", false);
         } else {
             cli->sendMsg(ResponseCode::CommandSyntaxError,
                          "Permitted action for def routes <replace|add>",
@@ -1978,6 +2223,7 @@ int CommandListener::RouteCmd::runCommand(SocketClient *cli, int argc, char **ar
                 return 0;
             }
 
+#if 0
             char *iface = argv[4],
                  *dstPrefix = argv[6],
                  *gateway = NULL;
@@ -2012,6 +2258,8 @@ int CommandListener::RouteCmd::runCommand(SocketClient *cli, int argc, char **ar
                 cli->sendMsg(ResponseCode::CommandOkay,
                             "destination route add succeeded", false);
             }
+#endif
+            cli->sendMsg(ResponseCode::CommandOkay, "route dst add ignored", false);
         } else if (!strcmp(argv[1], "del")) {
             if (argc != 5) {
                 cli->sendMsg(ResponseCode::CommandSyntaxError,
@@ -2019,6 +2267,7 @@ int CommandListener::RouteCmd::runCommand(SocketClient *cli, int argc, char **ar
                 return 0;
             }
 
+#if 0
             if (false == isValidIp(argv[4], argv[3]) ) {
                 cli->sendMsg(ResponseCode::CommandParameterError,
                                 "invalid IP address", false);
@@ -2032,6 +2281,8 @@ int CommandListener::RouteCmd::runCommand(SocketClient *cli, int argc, char **ar
                 cli->sendMsg(ResponseCode::CommandOkay,
                             "destination route delete succeeded", false);
             }
+#endif
+            cli->sendMsg(ResponseCode::CommandOkay, "route dst del ignored", false);
         } else {
             cli->sendMsg(ResponseCode::CommandSyntaxError,
                          "permitted operation for dst routes: <add|del>",
